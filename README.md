@@ -4,14 +4,23 @@ Nature Niners is a network connecting people belonging to all the age groups to 
 
 #### Stack Used:
 Web Technologies: HTML/HTML5, CSS, JavaScript
+
 Frameworks: Node.js, Express.js
+
 Libraries: Bootstrap, EJS (Embedded JavaScript), jQuery, Nodemailer, Node Cron
+
 Authentication Middleware: Passport.js
+
 Database: MongoDB
+
 Object Modeling Tool: Mongoose
+
 Testing Frameworks/Libraries: Mocha, Chai.js
+
 IDE: Sublime
+
 Database Hosting Service: mLab
+
 Deployment: Heroku
 
 #### Website Link: https://natureniners.herokuapp.com
