@@ -113,7 +113,7 @@
 		 	$('.pull-right').click(function(){
 		 		var textcomment= $("#comment-text").val();
 		 		$.ajax({
-  				url: "https://immense-chamber-61664.herokuapp.com/actions/<%= action._id%>/comment",
+  				url: "https://natureniners.herokuapp.com/actions/<%= action._id%>/comment",
   				type: "POST",
   				contentType: 'application/json', 
   				data: JSON.stringify({
@@ -135,7 +135,7 @@
 $('#like-btn').click(function(){
 		 		var likeAction= true;
 		 		$.ajax({
-  				url: "https://immense-chamber-61664.herokuapp.com/actions/<%= action._id%>/comment",
+  				url: "https://natureniners.herokuapp.com/actions/<%= action._id%>/comment",
   				type: "POST",
   				contentType: 'application/json', 
   				data: JSON.stringify({
@@ -158,7 +158,7 @@ $('.delete').click(delete_item);
 	function delete_item() {
     var id = $(this).attr('data-id');
     $.ajax({
-        url: 'https://immense-chamber-61664.herokuapp.com/actions/<%= action._id%>/comment/' + id+'?_method=DELETE',
+        url: 'https://natureniners.herokuapp.com/actions/<%= action._id%>/comment/' + id+'?_method=DELETE',
         type: 'POST',
         contentType: 'application/json', 
         success: function(data) {
@@ -184,7 +184,7 @@ $('.edit').click(edit_item);
 	function edit_item() {
     var id = $(this).attr('data-id');
     $.ajax({
-        url: 'https://immense-chamber-61664.herokuapp.com/actions/<%= action._id%>/comment/' + id+'?_method=PUT',
+        url: 'https://natureniners.herokuapp.com/actions/<%= action._id%>/comment/' + id+'?_method=PUT',
         type: 'POST',
         contentType: 'application/json', 
         data: JSON.stringify({

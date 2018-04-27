@@ -12,9 +12,9 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-router.get("/",function(req,res){
-	res.render("register.ejs");
-});
+// router.get("/",function(req,res){
+// 	res.render("register.ejs");
+// });
 
 router.post("/users",function(req,res){
 var	firstName= req.body.firstName;
@@ -39,7 +39,7 @@ var mailOptions = {
   							from: 'natureniners@gmail.com',
   							to: email,
   							subject: 'Welcome to Nature Niners',
-  							html:'<p>Greetings from Nature Niners,</p><p>Thank you for signing up for Natre Niners application. Nature Niners is a citizen Science community where you can contribute to the nature by participating in various events and supporting different causes.To See a list of current actions, <a href="https://immense-chamber-61664.herokuapp.com/login">Click here.</a></p><p>Welcome to the community!</p><p>--The Nature Niners Team</p>'
+  							html:'<p>Greetings from Nature Niners,</p><p>Thank you for signing up for Natre Niners application. Nature Niners is a citizen Science community where you can contribute to the nature by participating in various events and supporting different causes.To See a list of current actions, <a href="https://natureniners.herokuapp.com/login">Click here.</a></p><p>Welcome to the community!</p><p>--The Nature Niners Team</p>'
 							};
 		transporter.sendMail(mailOptions, function(error, info){
   			if (error) {
