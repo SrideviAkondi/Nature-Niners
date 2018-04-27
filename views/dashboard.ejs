@@ -1,0 +1,27 @@
+<%include partials/header%>
+<video autoplay muted id="dashboardVideo">
+  <source src="nature.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<div class="container">
+	<header class="jumbotron">
+<h2>Welcome <%= name%>,</h2>
+</header>
+<div class="row">
+
+<div class="col-md-3">
+	<div class="list-group"><h4>Dashboard</h4>
+	<li class="list-group-item">
+<a href="/actions">View All Actions</a></li>
+ <li class="list-group-item">
+<a href="/actions/new">Post an Action</a></li>
+<li class="list-group-item">
+<a href="/actions/useractions/<%= id%>">User Actions</a></li>
+
+</div>
+</div>
+</div>
+</div>
+
+<%include partials/footer%>

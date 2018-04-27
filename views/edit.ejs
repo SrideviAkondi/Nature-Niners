@@ -1,0 +1,52 @@
+<%include partials/header%>
+
+<div class="container">
+<div class="row">
+
+<h1 class="form-title">Edit <%= foundAction.title %>  Action</h1>
+<h5 class="form-title">Published On <%= foundAction.pubDate.toDateString() %></h5>
+<div class="form-div">
+<form action="/actions/<%= foundAction._id %>?_method=PUT" method="POST">
+<div class="form-group"> 
+<input class="form-control" type="text" name="action[title]" value="<%= foundAction.title %>">
+</div>
+<div class="form-group"> 
+<textarea class="form-control" type="text" name="action[content]"><%= foundAction.content %></textarea>
+</div>
+<div class="form-group"> 
+<p>Please change <%= foundAction.topic %> category to:</p>
+<select class="form-control" name="action[topic]">
+<option value="Climate"> Climate </option>
+<option value="Land">Land </option>
+<option value="Water"> Water </option>
+<option value="Wildlife"> Wildlife </option>
+</select>
+</div>
+<div class="form-group"> 
+<input class="form-control" type="text" name="action[image]" value="<%= foundAction.image %>">
+</div>
+<div class="form-group"> 
+<input class="form-control" type="text" name="action[location]" value="<%= foundAction.location %>">
+</div>
+<div class="form-group"> 
+<input class="form-control" type="text" name="action[startTime]" value="<%= foundAction.startTime %>">
+</div>
+<div class="form-group"> 
+<input class="form-control" type="text" name="action[endTime]" value="<%= foundAction.endTime %>">
+</div>
+<div class="form-group"> 
+<input class="form-control" type="text" name="action[expLikes]" value="<%= foundAction.expLikes %>">
+</div>
+<div > 
+<input id="hidden-date" type="text" name="action[updatedDate]" value="<%= foundAction.updatedDate.toDateString() %>">
+</div>
+<div class="form-group"> 
+<button class="btn  btn-primary btn-block">Submit</button>
+</div>
+</form>
+</div>
+
+</div>
+</div>
+
+<%include partials/footer%>

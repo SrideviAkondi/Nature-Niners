@@ -1,0 +1,101 @@
+.form-div {
+	width:30%; 
+	margin: 20px auto;
+}
+
+.form-title	{
+text-align: center;
+}
+
+.row text-center{
+	display: flex; 
+	flex-wrap: wrap;
+}
+
+#hidden-date{
+	display:none;
+}
+
+.thumbnail img{
+	width: 100%;
+
+}
+
+.thumbnail{
+	padding: 0;
+}
+
+#comment-text {
+	width: 90%;
+}
+
+
+ #text{
+	display: inline-block;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;               
+  height: 1px;
+}
+
+.comment-delete{
+
+	display: inline;
+
+}
+
+.comment-edit{
+	display: inline;
+
+} 
+
+
+#showmsg{
+	text-align: center;
+}
+
+.pull-right {
+    float: right!important;
+    padding-left: 10px;
+}
+
+
+#myVideo{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    top: 45px;
+    min-width: 100%; 
+    min-height: 100%;
+}
+
+#content{
+	position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+    top:300px;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+span .label{
+
+	font-size: 4em; 
+}
+
+#dashboardVideo{
+	width: 400px;
+    height: 500px;
+    float: right;
+    padding-top: 55p;
+    /* top: 756px; */
+    margin-top: 8%;
+    margin-right: 23%;
+
+}

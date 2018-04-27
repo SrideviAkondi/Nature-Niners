@@ -1,0 +1,212 @@
+<%include partials/header%>
+
+<div class="container">
+<div class="row">
+<div class="each-div">
+<h1><%= action.title %> Action</h1>
+<div class="thumbnail">
+<p><strong>Category: </strong><span class="label label-default"><%= action.topic %></span></p>
+
+<p><strong>Published On: </strong><span class="label label-success"><%= action.pubDate.toDateString() %></span><strong>By: <span class="label label-success"><%= action.author.username%></span></strong></p>
+
+<p><%= action.content %></p>
+
+<p><img src="<%=action.image%>"></p>
+
+<p><strong>Location: </strong><span class="label label-success"><%= action.location %></span></p>
+
+<p><strong>Timings: </strong> <span class="label label-warning"><%= action.startTime %></span> <span class="label label-warning"><%= action.endTime %></span></p>
+
+<p><span class="label label-primary">Likes: <%= action.likes_Count %></span></p>
+
+<% var x=0; %>
+<% var BreakException={}; %>
+
+
+<% try {%>
+<%	action.comments.forEach(function(comment){ %>
+<% if(comment.name.username == currentUser.username && comment.like== true) { throw BreakException %>
+<%}%>
+<% }); %>
+<% }catch(e){x=1;}%>
+
+<% if(x==1){ %>
+<button id="like-button" type="button" class="btn btn-default btn-sm disabled">
+          <span class="glyphicon glyphicon-thumbs-up"></span> Liked
+        </button>
+<% } else {%>
+	<button id="like-btn" type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-thumbs-up"></span> Like
+        </button>
+<% }%>
+
+</div>
+</div>
+<div class="well">
+	<div class= "col-md-9">
+	<span class="comment-div"><input id="comment-text" class="form-control" type="text" name="comment" placeholder="post a comment"></span>
+	</div>
+	<div class= "col-md-3">
+	<span class="pull-right">
+		<a class="btn btn-success">Post Comment</a>
+	</span>
+	</div>
+
+
+	<hr>
+
+	<%	action.comments.forEach(function(comment){ %>
+		<div class="row">
+		
+		<div class="col-md-12">
+		<%	if(comment.text != null){ %>
+		<p><strong><%= comment.name.username%></strong></p>
+		
+		<span class="pull-right"><%= comment.commentDate.toDateString()%></span>
+		
+		<p id="text"><%= comment.text%></p>	
+	
+		
+		<%	if(currentUser.username == comment.name.username){ %>
+		<div class="new-block">
+		<div class="comment-edit">
+			<input class="edit-text" type="text" onfocus="this.value=''" name="comment" value="<%= comment.text%>">
+
+			<button type="button" class="edit" data-id="<%=comment._id%>">
+			Update
+        	</button>
+
+        	<button type="button" class="edit-cancel" data-id="<%=comment._id%>">
+			Cancel
+        	</button>
+			<button type="button"  class="showEdit">
+			<span class="glyphicon glyphicon-pencil"></span>
+			</button>
+
+        </div>
+		<div class="comment-delete">
+		<button type="button" class="delete" data-id="<%=comment._id%>">
+          <span class="glyphicon glyphicon-trash"></span>
+        </button>
+        </div>
+    </div>
+         <%	} %>
+
+       	<%	} %>
+		</div>
+
+<hr>
+
+		</div>
+	<%	}); %>
+
+
+	<script> 
+	$(document).ready(function () {
+
+
+		$('.edit-text').hide();
+		$('.edit').hide();
+		$('.edit-cancel').hide();
+
+
+		 	$('.pull-right').click(function(){
+		 		var textcomment= $("#comment-text").val();
+		 		$.ajax({
+  				url: "https://immense-chamber-61664.herokuapp.com/actions/<%= action._id%>/comment",
+  				type: "POST",
+  				contentType: 'application/json', 
+  				data: JSON.stringify({
+
+		 			text: $("#comment-text").val(),
+		 			name: {
+		 				id: "<%= currentUser._id%>",
+		 				username: "<%= currentUser.username%>"
+		 			}
+		 		}),
+
+  		success: function(data){
+  		window.location.reload(true)
+			}
+		});
+		 	});
+
+
+$('#like-btn').click(function(){
+		 		var likeAction= true;
+		 		$.ajax({
+  				url: "https://immense-chamber-61664.herokuapp.com/actions/<%= action._id%>/comment",
+  				type: "POST",
+  				contentType: 'application/json', 
+  				data: JSON.stringify({
+
+		 			like: likeAction,
+		 			name: {
+		 				id: "<%= currentUser._id%>",
+		 				username: "<%= currentUser.username%>"
+		 			}
+		 		}),
+
+  		success: function(data){
+  		window.location.reload(true)
+			}
+		});
+	});
+		  
+$('.delete').click(delete_item);
+
+	function delete_item() {
+    var id = $(this).attr('data-id');
+    $.ajax({
+        url: 'https://immense-chamber-61664.herokuapp.com/actions/<%= action._id%>/comment/' + id+'?_method=DELETE',
+        type: 'POST',
+        contentType: 'application/json', 
+        success: function(data) {
+            window.location.reload(true)
+        }
+    });
+}
+
+$('.showEdit').click(function(){
+	$('.edit-text').show();
+	$('.edit').show();
+	$('.edit-cancel').show();
+});
+
+
+$('.edit-cancel').click(function(){
+	window.location.reload(true)
+});
+
+$('.edit').click(edit_item);
+
+
+	function edit_item() {
+    var id = $(this).attr('data-id');
+    $.ajax({
+        url: 'https://immense-chamber-61664.herokuapp.com/actions/<%= action._id%>/comment/' + id+'?_method=PUT',
+        type: 'POST',
+        contentType: 'application/json', 
+        data: JSON.stringify({
+
+		 			text: $(".edit-text").val(),
+		 			name: {
+		 				id: "<%= currentUser._id%>",
+		 				username: "<%= currentUser.username%>"
+		 			}
+		 		}),
+        success: function(data) {
+            window.location.reload(true)
+        }
+    });
+}
+
+		  });
+		</script>
+
+</div>
+
+
+</div>
+</div>
+<%include partials/footer%>

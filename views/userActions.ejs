@@ -1,0 +1,38 @@
+<%include partials/header%>
+
+<h1>Your Action</h1>
+<div>
+<p>
+<%	userActions.posts.forEach(function(post){ %>
+	<div class="col-md-3 col-sm-6"> 
+		<div class="thumbnail">
+		
+		<h4> <%= post.title %> </h4>
+		<p> <%= post.topic %> </p>
+
+		<p> <%= post.pubDate.toDateString() %></p>
+
+		<p> <%= post.content %></p>
+
+		<p> <img src="<%=post.image%>" alt=""></p>
+
+		<p> <%= post.location %></p>
+
+		<p> <%= post.startTime %></p>
+
+		<p> <%= post.endTime %></p>
+
+		<p> <%= post.likes_Count %></p>
+		<a  class="btn btn-primary btn-sm" href="/actions/<%= post._id %>/edit">Edit</a>
+		<form style="display: inline-block;" action="/actions/<%= post._id %>?_method=DELETE" method="POST"> 
+		<button class="btn  btn-primary btn-sm">Delete</button><br />
+		</form>
+	
+		</div>
+</div>
+<%	}); %>
+
+
+</div>
+
+<%include partials/footer%>
